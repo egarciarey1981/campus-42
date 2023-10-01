@@ -1,13 +1,9 @@
 NAME = libft.a
-
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-
-SRC = $(wildcard ft_*.c)
+SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $<
+	cc -Wall -Werror -Wextra -c $<
 
 $(NAME): $(OBJ)
 	ar crv $(NAME) $(OBJ)
