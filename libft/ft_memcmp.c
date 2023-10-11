@@ -27,10 +27,8 @@ int	ft_memcmp(const void *b1, const void *b2, size_t len)
 		ptr2++;
 		i++;
 	}
-	if (i == len || *ptr1 == *ptr2)
+	if (i == len)
 		return (0);
-	else if (*ptr1 > *ptr2)
-		return (1);
 	else
-		return (-1);
+		return (*ptr1 - *ptr2);
 }
