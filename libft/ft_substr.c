@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static size_t	min(size_t x, size_t y)
+static size_t	ft_min_size(size_t x, size_t y)
 {
 	if (x < y)
 		return (x);
@@ -26,7 +26,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	size_t	counter;
 
-	ptr = malloc(sizeof(char) * (min(ft_strlen(s), len) + 1));
+	ptr = malloc(sizeof(char) * (ft_min_size(ft_strlen(s), len) + 1));
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;
