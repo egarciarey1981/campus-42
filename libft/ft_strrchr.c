@@ -15,20 +15,16 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
-	int	l;
 
-	i = 0;
-	l = -1;
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char)c)
-			l = i;
-		i++;
-	}
+	i = ft_strlen(s);
 	if ((char)c == '\0')
 		return (&((char *)s)[i]);
-	else if (l >= 0)
-		return (&((char *)s)[l]);
-	else
-		return (NULL);
+	while (i >= 0)
+	{
+		if (s[i] == (char)c)
+			return (&((char *)s)[i]);
+		else
+			i--;
+	}
+	return (NULL);
 }
