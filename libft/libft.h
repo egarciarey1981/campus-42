@@ -49,5 +49,6 @@ void	ft_putstr_fd(char *s, int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putendl_fd(char *s, int fd);
 char	*ft_itoa(int n);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
