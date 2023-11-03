@@ -40,7 +40,9 @@ static void	*ft_memmove_backward(void *dst, const void *src, size_t len)
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (dst < src)
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	else if (dst < src)
 		return (ft_memmove_forward(dst, src, len));
 	else
 		return (ft_memmove_backward(dst, src, len));
