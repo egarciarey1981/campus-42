@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_bzero(void *b, size_t len)
+void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(b, 0, len);
+	ft_memset(s, 0, n);
 }

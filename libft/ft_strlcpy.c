@@ -12,20 +12,24 @@
 
 #include "libft.h"
 
+static int	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
+	size_t	srcsize;
 
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	i = 0;
-	while (i < dstsize - 1 && src[i] != '\0')
+	srcsize = ft_strlen(src);
+	if (dstsize > 0)
 	{
-		dst[i] = src[i];
-		i++;
+		dstsize = ft_min(srcsize, dstsize - 1);
+		ft_memcpy(dst, src, dstsize);
+		dst[dstsize] = '\0';
 	}
-	dst[i] = '\0';
-	while (src[i] != '\0')
-		i++;
-	return (i);
+	return (srcsize);
 }
