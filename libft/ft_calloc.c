@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eliegarc <eliegarc@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 12:53:47 by eliegarc          #+#    #+#             */
-/*   Updated: 2023/10/07 12:53:49 by eliegarc         ###   ########.fr       */
+/*   Created: 2023/10/11 18:11:02 by eliegarc          #+#    #+#             */
+/*   Updated: 2023/10/11 18:11:06 by eliegarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	if (dstsize <= ft_strlen(src))
-	{
-		ft_memcpy(dst, src, dstsize);
-		dst[dstsize - 1] = '\0';
-	}
-	else
-	{
-		ft_memcpy(dst, src, ft_strlen(src));
-		dst[ft_strlen(src)] = '\0';
-	}
-	return (ft_strlen(src));
+	unsigned char	*ptr;
+
+	ptr = malloc(nmemb * size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, nmemb * size);
+	return ((void *)ptr);
 }
