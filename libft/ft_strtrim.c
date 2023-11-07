@@ -18,6 +18,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		start;
 	char	*str;
 
+	if (ft_strlen(s1) == 0)
+		return (ft_substr(s1, 0, 1));
+	if (ft_strlen(set) == 0)
+		return (ft_substr(s1, 0, ft_strlen(s1)));
 	str = (char *)s1;
 	i = 0;
 	while (ft_strchr(set, str[i]))
