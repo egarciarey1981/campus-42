@@ -11,59 +11,83 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-static int	ft_size(char const *s, char c)
+static int	ft_total_words(char const *s, char c)
 {
 	int	i;
 	int	count;
 
-	if (s[0] == '\0')
-		return (0);
 	i = 0;
 	count = 0;
+	while (s[i] == c)
+		i++;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
-		{
-			if (i != 0 && s[i - 1] != c)
-				count++;
-		}
-		i++;
+		count++;
+		while (s[i] != c && s[i] != '\0')
+			i++;
+		while (s[i] == c && s[i] != '\0')
+			i++;
 	}
-	count++;
 	return (count);
+}
+
+static char	*ft_next_word(char const *str, int *pos, char c)
+{
+	int	i;
+
+	while (str[*pos] == c)
+		*pos += 1;
+	i = *pos;
+	while (str[*pos] != c && str[*pos] != '\0')
+		*pos += 1;
+	return (ft_substr(str, i, *pos - i));
+}
+
+static char	**ft_free(char **result)
+{
+	int	i;
+
+	i = 0;
+	while (result[i] != NULL)
+		free(result[i++]);
+	free(result);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	int		i;
-	int		j;
-	int		n;
+	int		total_words;
+	int		current_word;
 	char	**result;
 
-	i = 0;
-	j = 0;
-	n = 0;
-	result = ft_calloc(ft_size(s, c) + 1, sizeof(char **));
+	total_words = ft_total_words(s, c);
+	result = malloc((total_words + 1) * sizeof(char *));
 	if (result == NULL)
 		return (NULL);
+	else
+		result[total_words] = NULL;
+	current_word = 0;
 	i = 0;
-	j = i;
-	while (s[i] != '\0')
+	while (current_word < total_words)
 	{
-		while (s[i] != c && s[i] != '\0')
-			i++;
-		if (i == 0 || s[i - 1] == c)
-			j = ++i;
-		else
-		{
-			result[n] = ft_substr(s, j, i - j);
-			n++;
-			while (s[i] == c && s[i] != '\0')
-				i++;
-			j = i;
-		}
+		result[current_word] = ft_next_word(s, &i, c);
+		if (result[current_word++] == NULL)
+			return (ft_free(result));
 	}
-	result[n] = NULL;
 	return (result);
 }
+
+/* int main(int argc, char **argv)
+{
+	char **result = ft_split(argv[1], argv[2][0]);
+	int i = 0;
+	while (result[i] != NULL)
+	{
+		printf("%i - `%s`\n", i, result[i]);
+		i++;
+	}
+	return 0;
+} */
