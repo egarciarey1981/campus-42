@@ -20,7 +20,7 @@ static int	ft_total_words(char const *s, char c)
 
 	i = 0;
 	count = 0;
-	while (s[i] == c)
+	while (s[i] == c && c != '\0')
 		i++;
 	while (s[i] != '\0')
 	{
@@ -69,6 +69,8 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	else
 		result[total_words] = NULL;
+	if (total_words == 0)
+		return (result);
 	current_word = 0;
 	i = 0;
 	while (current_word < total_words)
@@ -84,6 +86,8 @@ char	**ft_split(char const *s, char c)
 {
 	char **result = ft_split(argv[1], argv[2][0]);
 	int i = 0;
+	if (result[0] == NULL)
+		printf("nada\n");
 	while (result[i] != NULL)
 	{
 		printf("%i - `%s`\n", i, result[i]);
