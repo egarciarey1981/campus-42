@@ -12,23 +12,26 @@
 
 #include "libft.h"
 
+static int	ft_inset(char c, char const *set)
+{
+	int	i;
+
+	i = 0;
+	while (set[i] != c && set[i] != '\0')
+		i++;
+	return (set[i] != '\0');
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		start;
-	char	*str;
+	int	ini;
+	int	end;
 
-	if (ft_strlen(s1) == 0)
-		return (ft_substr(s1, 0, 1));
-	if (ft_strlen(set) == 0)
-		return (ft_substr(s1, 0, ft_strlen(s1)));
-	str = (char *)s1;
-	i = 0;
-	while (ft_strchr(set, str[i]))
-		i++;
-	start = i;
-	i = ft_strlen(s1);
-	while (ft_strchr(set, str[i]))
-		i--;
-	return (ft_substr(s1, start, i - start + 1));
+	ini = 0;
+	while (ft_inset(s1[ini], set))
+		ini++;
+	end = ft_strlen(s1) - 1;
+	while (ft_inset(s1[end], set))
+		end--;
+	return (ft_substr(s1, ini, end - ini + 1));
 }
