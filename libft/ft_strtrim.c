@@ -28,10 +28,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int	end;
 
 	ini = 0;
-	while (ft_inset(s1[ini], set))
+	while (ft_inset(s1[ini], set) && s1[ini] != '\0')
 		ini++;
 	end = ft_strlen(s1) - 1;
-	while (ft_inset(s1[end], set))
+	while (ft_inset(s1[end], set) && end > ini)
 		end--;
 	return (ft_substr(s1, ini, end - ini + 1));
 }
