@@ -1,4 +1,4 @@
-NAME = libft.a
+NAME = libftprintf.a
 
 SRC_BONUS = $(wildcard *_bonus.c)
 OBJ_BONUS = $(SRC_BONUS:_bonus.c=_bonus.o)
