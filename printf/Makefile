@@ -1,8 +1,5 @@
 NAME = libftprintf.a
 
-SRC_BONUS = $(wildcard *_bonus.c)
-OBJ_BONUS = $(SRC_BONUS:_bonus.c=_bonus.o)
-
 SRC = $(wildcard *.c filter-out $(SRC_BONUS))
 OBJ = $(SRC:.c=.o)
 
@@ -21,6 +18,3 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
-
-bonus: $(OBJ_BONUS)
-	@ar cr $(NAME) $(OBJ_BONUS)
